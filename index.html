@@ -22,9 +22,34 @@
       font-weight: 600;
     }
 
+    /* Style des liens */
     a {
       text-decoration: none;
-      color: inherit;
+      color: #FF6F61;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    /* Effets au survol */
+    a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      display: block;
+      background: #FFB88C;
+      transition: width 0.3s ease;
+      bottom: -2px;
+      left: 0;
+    }
+
+    a:hover {
+      color: #FFB88C;
+    }
+
+    a:hover::after {
+      width: 100%;
     }
 
     img {
@@ -134,7 +159,7 @@
     }
 
     .tool {
-      background-color: #4CAF50;
+      background-color: #FFB88C;
       color: white;
       border-radius: 10px;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
