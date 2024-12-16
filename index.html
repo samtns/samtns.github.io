@@ -78,7 +78,7 @@
 
 
 
-  /* Global Styles */
+    /* Global Styles */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -252,7 +252,19 @@
   </style>
 </head>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({
+      duration: 1000, // Durée des animations en millisecondes
+      once: true      // Animation exécutée une seule fois
+    });
+  });
+</script>
+
 <body>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
 <header>
   <h1>Bienvenue sur mon portfolio</h1>
   <p>Futur développeur web | Étudiant | Passionné par la création et le montage</p>
@@ -264,7 +276,8 @@
     <h2 class="section-title">À propos de moi</h2>
     <div class="about">
       <div class="about-text">
-        <p>Bonjour, je m'appelle Souheyl et j'ai 19 ans. Je suis étudiant en BTS informatique deuxième année (SLAM).</p>
+        <p>Bonjour, je m'appelle Souheyl et j'ai 19 ans. Je suis étudiant en BTS informatique deuxième année (SLAM). Passionné par le monde de l'informatique, je suis résolument déterminé à façonner mon avenir professionnel dans ce domaine en constante évolution. Mon parcours académique, avec un baccalauréat mettant l'accent sur les mathématiques et la physique, témoigne de ma capacité à aborder des problématiques avec une approche analytique et rigoureuse.
+          <a href="cv.pdf" download="Mon_CV">Télécharger mon CV</a></p>
       </div>
       <div class="about-img">
         <img src="https://i.ibb.co/BGRJngm/moi-modified-1-modified.png" alt="Photo de moi">
@@ -396,6 +409,41 @@
     </div>
   </section>
 
+  <!-- Section Stage -->
+  <section>
+    <h2 class="section-title">Mes Stages</h2>
+    <div class="card-container">
+      <!-- Stage 1 -->
+      <div class="card" data-aos="fade-up">
+        <i class="fas fa-briefcase"></i>
+        <h3>Stage d'observation</h3>
+        <p><strong>Entreprise :</strong> Neo Technology Group</p>
+        <p><strong>Période :</strong> Août 2023</p>
+        <p>Cloud, développement de solutions logicielles.</p>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-database"></i>
+        <h3>Stage première année BTS</h3>
+        <p><strong>Entreprise :</strong> Numéritek</p>
+        <p><strong>Période :</strong> Avril 2024 - Mai 2024</p>
+        <p>Ticketing, dépannage logicielles, installation serveur.</p>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-cogs"></i>
+        <h3>Stage deuxième année BTS</h3>
+        <p><strong>Entreprise :</strong> A venir</p>
+        <p><strong>Période :</strong> Janvier 2025 - Février 2025</p>
+        <p>A venir.</p>
+      </div>
+    </div>
+  </section>
+
+
+
   <!-- Projects Section -->
   <section>
     <h2 class="section-title">Mes Projets</h2>
@@ -414,6 +462,14 @@
         </a>
         <p><a href="documentation.pdf" target="_blank">Téléchargez la documentation</a></p>
       </div>
+      <!-- Projet 2 -->
+      <div class="project">
+        <a href="https://samtns.github.io/blackjack-js/" target="_blank">
+          <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 2">
+          <h3>Projet 3</h3>
+          <p> Un jeu de carte, le blackjack, codé en HTML et Java </p>
+        </a>
+        </div>
     </div>
   </section>
 
@@ -423,43 +479,36 @@
   <p>&copy; 2024 Mon Portfolio | Tous droits réservés</p>
 </footer>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  let AOS;
-  AOS = 0
-  AOS.init({ duration: 1200 });
-</script>
-<script>
-    // Sélectionne uniquement le conteneur du carrousel spécifique
-    const techCarousel = document.querySelector('.carousel-container');
-    const techCards = techCarousel.querySelectorAll('.card');
-    const techPrevButton = techCarousel.querySelector('.prev');
-    const techNextButton = techCarousel.querySelector('.next');
+  // Sélectionne uniquement le conteneur du carrousel spécifique
+  const techCarousel = document.querySelector('.carousel-container');
+  const techCards = techCarousel.querySelectorAll('.card');
+  const techPrevButton = techCarousel.querySelector('.prev');
+  const techNextButton = techCarousel.querySelector('.next');
 
-    let currentTechIndex = 0;
+  let currentTechIndex = 0;
 
-    function updateTechCarousel() {
+  function updateTechCarousel() {
     techCards.forEach((card, index) => {
       card.classList.toggle('active', index === currentTechIndex);
     });
   }
 
-    techPrevButton.addEventListener('click', () => {
+  techPrevButton.addEventListener('click', () => {
     currentTechIndex = (currentTechIndex === 0) ? techCards.length - 1 : currentTechIndex - 1;
     updateTechCarousel();
   });
 
-    techNextButton.addEventListener('click', () => {
+  techNextButton.addEventListener('click', () => {
     currentTechIndex = (currentTechIndex === techCards.length - 1) ? 0 : currentTechIndex + 1;
     updateTechCarousel();
   });
 
-    // Initialisation
-    updateTechCarousel();
+  // Initialisation
+  updateTechCarousel();
 </script>
 
 
 </body>
 
 </html>
-
