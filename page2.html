@@ -135,7 +135,16 @@
   <main>
     <section>
       <h2 class="section-title">Introduction</h2>
-      <p>Ce projet vise à améliorer une application Java pour la gestion d'une ligue et de ses employés. Les améliorations incluent la création d'une base de données, un arbre heuristique, et des modifications dans la gestion des employés.</p>
+      <p>Ce projet avait pour objectif d’améliorer une application Java en ligne de commande dédiée à la gestion des employés et des ligues.
+
+Dans un premier temps, nous avons élaboré un modèle conceptuel des données (MCD) afin d’associer chaque employé à une ligue, à l’exception d’un super-administrateur. Une maquette de l’application a également été réalisée.
+
+Par la suite, nous avons intégré des accesseurs et mutateurs (getters et setters) ainsi qu’un contrôle des dates pour éviter qu’une date de départ soit antérieure à celle d’arrivée. Ces fonctionnalités ont été validées par des tests unitaires. En parallèle, le modèle physique des données (MPD) a été dérivé du MCD.
+
+Enfin, nous avons mis en place JDBC pour permettre la lecture, la modification et la suppression des employés et des ligues, en veillant à ce que la suppression d’une ligue entraîne celle des employés associés.
+
+En définitive, cette amélioration a permis d’assurer un accès aux données depuis n’importe quel poste, supprimant ainsi la contrainte d’une utilisation locale.
+</p>
     </section>
 
     <section>
@@ -144,7 +153,7 @@
       <img src="https://i.ibb.co/StmgVPC/MCD.png" alt="MCD">
       <p>Les scripts SQL associés :</p>
       <ul>
-        <li><a href="https://github.com/samtns/personnel/blob/master/script.sql" target="_blank">Création des tables</a></li>
+        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/create_table.sql" target="_blank">Création des tables</a></li>
         <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/Alter_Table.sql" target="_blank">Modification des tables</a></li>
       </ul>
     </section>
@@ -159,8 +168,8 @@
       <h2 class="section-title">Partie 3 - Développement Java</h2>
       <p>Améliorations principales :</p>
       <ul>
-        <li><a href="https://github.com/samtns/personnel/blob/master/Personnel/src/personnel/Employe.java" target="_blank">Ajout d'un sous-menu pour les employés</a></li>
-        <li><a href="https://github.com/samtns/personnel/blob/master/Personnel/src/testsUnitaires/testLigue.java" target="_blank">Meilleure gestion des erreurs de date</a></li>
+        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/personnel-master/Personnel/src/personnel/Employe.java" target="_blank">Ajout d'un sous-menu pour les employés</a></li>
+        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/personnel-master/Personnel/src/personnel/test%20unitaire%20exeption%20(date)" target="_blank">Meilleure gestion des erreurs de date</a></li>
       </ul>
     </section>
   </main>
