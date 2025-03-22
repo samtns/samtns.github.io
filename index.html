@@ -2,246 +2,258 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon Portfolio</title>
-  <!-- Import Google Fonts et Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <style>
-    /* Styles spécifiques au carrousel */
-    .carousel-container {
+    <style>
+        /* Variables */
+        :root {
+      --primary-color: #ff6b6b;
+      --secondary-color: #845ef7;
+      --accent-color: #ff922b;
+      --dark-bg: #0B1B33;
+      --card-bg: rgba(11, 27, 51, 0.7);
+      --text-color: #e2e8f0;
+      --gradient: linear-gradient(135deg, #ff6b6b, #ff922b);
+      --glass-bg: rgba(11, 27, 51, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+      font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+      background-color: var(--dark-bg);
+      overflow-x: hidden;
       position: relative;
-      overflow-x: hidden; /* Assurez que seuls les débordements horizontaux sont masqués */
-      margin: 40px auto;
-      max-width: 800px;
-      text-align: center;
-    }
-
-    .carousel {
-      display: flex;
-      justify-content: center; /* Centrage horizontal des éléments */
-      align-items: center; /* Centrage vertical */
-      transition: transform 0.5s ease-in-out;
-      height: 100%; /* Garde les cartes alignées */
-    }
-
-    .carousel .card {
-      display: none; /* Affecte uniquement les cartes dans le carrousel */
-      padding: 20px;
-      background-color: #3A3A3A;
-      color: #FFF;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      text-align: center;
-    }
-
-    .carousel .card.active {
-      display: block; /* Affiche uniquement la carte active */
-    }
-
-    .carousel-container .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5rem;
-      color: #9aa100;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .carousel-container .nav-btn.prev {
-      left: 10px;
-    }
-
-    .carousel-container .nav-btn.next {
-      right: 10px;
-    }
-
-    .carousel-container .nav-btn:hover {
-      color: #87CEFA;
-    }
-
-    /* Styles globaux pour les autres sections */
-    .card-container .card {
-      background-color: #3A3A3A;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      width: 200px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, background-color 0.3s;
-    }
-
-
-
-    /* Global Styles */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #D2D2D2;
-      line-height: 1.6;
-      background-color: #1A1A1A;
-    }
+      min-height: 100vh;
+      background: url('https://i.postimg.cc/9fVBTmvD/background.gif') center/cover no-repeat fixed;
+        }
 
     body::before {
       content: '';
-      position: fixed;
+            position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+            width: 100%;
       height: 100%;
-      background: url('https://i.postimg.cc/J76x0pqN/wallpapier3.gif') no-repeat center center fixed;
-      background-size: cover;
-      z-index: -2;
+      background: rgba(11, 27, 51, 0.2);
+      z-index: -1;
     }
 
-    h1, h2, h3 {
-      font-weight: 600;
-    }
-
+    /* Header avec effet verre */
     header {
       text-align: center;
-      padding: 60px 20px;
-      background: rgba(0, 0, 0, 0.2);
-      color: #9aa100;
+      padding: 120px 20px;
+      position: relative;
+      overflow: hidden;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
+      font-weight: 700;
       margin: 0;
+      background: linear-gradient(135deg, #ff6b6b, #ff922b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
     }
 
     header p {
-      font-size: 1rem;
-      margin-top: 10px;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease;
     }
 
+    /* Sections */
     main {
-      max-width: 1200px;
+            max-width: 1200px;
       margin: auto;
-      padding: 20px;
-    }
+      padding: 60px 20px;
+        }
 
     .section-title {
       text-align: center;
-      font-size: 1.8rem;
-      color: #9aa100;
-      margin-bottom: 40px;
+            font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+      position: relative;
+            display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
     }
 
     /* About Section */
     .about {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+            display: flex;
+            align-items: center;
+      gap: 40px;
+      background: var(--glass-bg);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      margin-bottom: 60px;
     }
 
     .about-text {
       flex: 1;
+      font-size: 1.1rem;
     }
 
     .about-img img {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      border: 3px solid transparent;
+      background: var(--gradient);
+      padding: 3px;
+      transition: transform 0.3s ease;
+    }
+
+    .about-img img:hover {
+      transform: scale(1.05);
     }
 
     /* Cards */
     .card-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
+            display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
     }
 
     .card {
-      background-color: #3A3A3A;
-      border-radius: 10px;
-      padding: 20px;
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 30px;
       text-align: center;
-      width: 200px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s, background-color 0.3s;
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+
+    .card:hover {
+            transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
     }
 
     .card i {
       font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #9aa100;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .card h3 {
-      color: #9aa100;
-      margin-bottom: 10px;
+            font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--text-color);
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      background-color: #444444;
-      color: #87CEFA;
+    .card ul, .card li {
+      list-style: none;
+      margin: 5px 0;
+      color: var(--text-color);
+      opacity: 0.9;
     }
 
     /* Projects Section */
     .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
     }
 
     .project {
-      background-color: #2A2A2A;
-      border-radius: 10px;
+      background: var(--glass-bg);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-10px);
+      border-color: var(--primary-color);
+      box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
     }
 
     .project img {
-      width: 100%;
-      height: 150px;
+            width: 100%;
+      height: 200px;
       object-fit: cover;
     }
 
     .project h3 {
-      text-align: center;
-      margin: 10px;
-      color: #9aa100;
-    }
-
-    footer {
-      text-align: center;
-      background: rgba(0, 0, 0, 0.8);
-      color: #D2D2D2;
       padding: 20px;
+      font-size: 1.3rem;
+      color: var(--text-color);
     }
 
+    .project p {
+      padding: 0 20px 20px;
+      color: var(--text-color);
+      opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid var(--glass-border);
+      padding: 30px;
+      margin-top: 60px;
+    }
+
+    /* Links */
     a {
-      color: #9aa100;
+      color: var(--primary-color);
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: all 0.3s ease;
       position: relative;
-      transition: color 0.3s ease, transform 0.3s ease;
     }
 
     a:hover {
-      color: #FFD700;
-      transform: scale(1.1);
+      color: var(--accent-color);
     }
 
     a::after {
       content: '';
       position: absolute;
-      left: 0;
       bottom: -2px;
+      left: 0;
       width: 0;
       height: 2px;
-      background-color: #FFD700;
+      background: var(--gradient);
       transition: width 0.3s ease;
     }
 
@@ -249,7 +261,100 @@
       width: 100%;
     }
 
-  </style>
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .about {
+        flex-direction: column;
+                text-align: center;
+        padding: 30px;
+      }
+
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+            }
+        }
+
+    /* Carousel styles */
+    .carousel-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel .card {
+      min-width: 100%;
+      margin: 0;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .nav-btn.prev {
+      left: 10px;
+    }
+
+    .nav-btn.next {
+      right: 10px;
+    }
+    </style>
 </head>
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -266,155 +371,151 @@
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <header>
-  <h1>Bienvenue sur mon portfolio</h1>
-  <p>Futur développeur web | Étudiant | Passionné par la création et le montage</p>
+  <h1 data-aos="fade-down">Bienvenue sur mon portfolio</h1>
+  <p data-aos="fade-up" data-aos-delay="200">Futur développeur web | Étudiant | Passionné par la création et le montage</p>
 </header>
 
 <main>
   <!-- About Section -->
   <section>
-    <h2 class="section-title">À propos de moi</h2>
-    <div class="about">
+    <h2 class="section-title" data-aos="fade-up">À propos de moi</h2>
+    <div class="about" data-aos="fade-up" data-aos-delay="200">
       <div class="about-text">
         <p>Bonjour, je m'appelle Souheyl et j'ai 19 ans. Je suis étudiant en BTS informatique deuxième année (SLAM). Passionné par le monde de l'informatique, je suis résolument déterminé à façonner mon avenir professionnel dans ce domaine en constante évolution. Mon parcours académique, avec un baccalauréat mettant l'accent sur les mathématiques et la physique, témoigne de ma capacité à aborder des problématiques avec une approche analytique et rigoureuse.
           <a href="cv.pdf" download="Mon_CV">Télécharger mon CV</a></p>
-      </div>
+        </div>
       <div class="about-img">
         <img src="https://i.ibb.co/BGRJngm/moi-modified-1-modified.png" alt="Photo de moi">
-      </div>
-    </div>
-  </section>
+            </div>
+        </div>
+    </section>
 
   <!-- Mes Compétences -->
   <section>
-    <h2 class="section-title">Mes Compétences</h2>
+    <h2 class="section-title" data-aos="fade-up">Mes Compétences</h2>
     <div class="card-container">
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-laptop-code"></i>
         <h3>Front-End</h3>
         <li>HTML</li>
         <li>CSS</li>
         <li>JavaScript</li>
-      </div>
-      <div class="card">
+                    </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-database"></i>
         <h3>Back-End</h3>
         <li>Java</li>
         <li>PHP</li>
         <li>Python</li>
         <li>SQL</li>
-      </div>
-    </div>
+                </div>
+                    </div>
   </section>
 
   <!-- Mes Logiciels -->
   <section>
-    <h2 class="section-title">Mes Logiciels</h2>
+    <h2 class="section-title" data-aos="fade-up">Mes Logiciels</h2>
     <div class="card-container">
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-paint-brush"></i>
         <h3>Pack Adobe</h3>
         <li>Illustrator</li>
         <li>Photoshop</li>
         <li>Premiere Pro</li>
-      </div>
-      <div class="card">
+                    </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-file-alt"></i>
         <h3>Pack Office</h3>
         <li>Word</li>
         <li>Excel</li>
         <li>PowerPoint</li>
         <li>Outlook</li>
-      </div>
-      <div class="card">
+                </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
         <i class="fas fa-code"></i>
         <h3>IDE & Développement</h3>
         <li>PHPStorm, Eclipse</li>
-      </div>
-    </div>
+                    </div>
+                </div>
   </section>
 
   <!-- Environnements et Outils -->
   <section>
-    <h2 class="section-title">Environnements et Outils</h2>
+    <h2 class="section-title" data-aos="fade-up">Environnements et Outils</h2>
     <div class="card-container">
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-cogs"></i>
         <h3>VirtualBox</h3>
         <ul>
           <li>Installation de machines virtuelles</li>
         </ul>
-      </div>
-      <div class="card">
+                    </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-server"></i>
         <h3>VMware</h3>
         <ul>
           <li>Gestion avancée de VMs</li>
         </ul>
-      </div>
-      <div class="card">
+                </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
         <i class="fas fa-terminal"></i>
         <h3>Shell</h3>
         <ul>
           <li>Bash scripting</li>
           <li>Commandes UNIX</li>
         </ul>
-      </div>
-      <div class="card">
+                    </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="500">
         <i class="fab fa-linux"></i>
         <h3>Linux</h3>
         <ul>
           <li>Distributions Linux</li>
           <li>Administration systèmes</li>
         </ul>
-      </div>
-    </div>
-  </section>
-
+            </div>
+        </div>
+    </section>
 
   <!-- Veille Technologique Section -->
   <section>
-    <h2 class="section-title">Veille Technologique</h2>
-    <div class="technology-info">
-      <div class="carousel-container">
-        <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
-        <div class="carousel">
-          <!-- Card 1 -->
-          <div class="card active">
-            <i class="fas fa-globe"></i>
-            <h3>Blender.org</h3>
-            <p>Suivez les dernières fonctionnalités et versions officielles de Blender.</p>
-            <a href="https://www.blender.org" target="_blank">Visiter le site</a>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="card">
-            <i class="fas fa-newspaper"></i>
-            <h3>BlenderNation</h3>
-            <p>Articles, tutoriels et projets réalisés avec Blender par la communauté.</p>
-            <a href="https://www.blendernation.com" target="_blank">Découvrir ici</a>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="card">
-            <i class="fab fa-youtube"></i>
-            <h3>Blender Guru</h3>
-            <p>Tutoriels de modélisation réaliste et rendu avancé pour Blender.</p>
-            <a href="https://www.youtube.com/user/AndrewPPrice" target="_blank">Voir sur YouTube</a>
-          </div>
+    <h2 class="section-title" data-aos="fade-up">Veille Technologique</h2>
+    <div class="carousel-container" data-aos="fade-up" data-aos-delay="200">
+      <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel">
+        <!-- Card 1 -->
+        <div class="card">
+          <i class="fas fa-globe"></i>
+          <h3>Blender.org</h3>
+          <p>Suivez les dernières fonctionnalités et versions officielles de Blender.</p>
+          <a href="https://www.blender.org" target="_blank">Visiter le site</a>
         </div>
-        <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+        
+        <!-- Card 2 -->
+        <div class="card">
+          <i class="fas fa-newspaper"></i>
+          <h3>BlenderNation</h3>
+          <p>Articles, tutoriels et projets réalisés avec Blender par la communauté.</p>
+          <a href="https://www.blendernation.com" target="_blank">Découvrir ici</a>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="card">
+          <i class="fab fa-youtube"></i>
+          <h3>Blender Guru</h3>
+          <p>Tutoriels de modélisation réaliste et rendu avancé pour Blender.</p>
+          <a href="https://www.youtube.com/user/AndrewPPrice" target="_blank">Voir sur YouTube</a>
+        </div>
       </div>
-
+      <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
     </div>
   </section>
 
   <!-- Section Stage -->
   <section>
-    <h2 class="section-title">Mes Stages</h2>
+    <h2 class="section-title" data-aos="fade-up">Mes Stages</h2>
     <div class="card-container">
       <!-- Stage 1 -->
-      <div class="card" data-aos="fade-up">
+      <div class="card" data-aos="fade-up" data-aos-delay="200">
         <i class="fas fa-briefcase"></i>
         <h3>Stage d'observation</h3>
         <p><strong>Entreprise :</strong> Neo Technology Group</p>
@@ -423,16 +524,16 @@
       </div>
 
       <!-- Stage 2 -->
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <div class="card" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-database"></i>
         <h3>Stage première année BTS</h3>
         <p><strong>Entreprise :</strong> Numéritek</p>
         <p><strong>Période :</strong> Avril 2024 - Mai 2024</p>
         <p>Ticketing, dépannage logicielles, installation serveur.</p>
-      </div>
-
+                </div>
+                
       <!-- Stage 3 -->
-      <div class="card" data-aos="fade-up" data-aos-delay="200">
+      <div class="card" data-aos="fade-up" data-aos-delay="400">
         <i class="fas fa-cogs"></i>
         <h3>Stage deuxième année BTS</h3>
         <p><strong>Entreprise :</strong> Ilyes LABIDI</p>
@@ -441,76 +542,70 @@
         <p>
           <a href="page3.html" target="_blank">Voir le projet</a>
         </p>
-      </div>
-    </div>
-  </section>
-
-
+            </div>
+        </div>
+    </section>
 
   <!-- Projects Section -->
   <section>
-    <h2 class="section-title">Mes Projets</h2>
+    <h2 class="section-title" data-aos="fade-up">Mes Projets</h2>
     <div class="projects">
       <!-- Projet 1 -->
-      <a href="page1.html" target="_blank" class="project">
+      <a href="page1.html" target="_blank" class="project" data-aos="fade-up" data-aos-delay="200">
         <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 1">
         <h3>Projet 1</h3>
       </a>
 
       <!-- Projet 2 -->
-      <div class="project">
+      <div class="project" data-aos="fade-up" data-aos-delay="300">
         <a href="page2.html" target="_blank">
           <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 2">
           <h3>Projet 2</h3>
         </a>
         <p><a href="documentation.pdf" target="_blank">Téléchargez la documentation</a></p>
-      </div>
-      <!-- Projet 2 -->
-      <div class="project">
+            </div>
+            
+      <!-- Projet 3 -->
+      <div class="project" data-aos="fade-up" data-aos-delay="400">
         <a href="https://samtns.github.io/blackjack-js/" target="_blank">
           <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 2">
           <h3>Projet 3</h3>
-          <p> Un jeu de carte, le blackjack, codé en HTML et Java </p>
+          <p>Un jeu de carte, le blackjack, codé en HTML et Java</p>
         </a>
+            </div>
         </div>
-    </div>
-  </section>
-
+    </section>
 </main>
 
-<footer>
+    <footer>
   <p>&copy; 2024 Mon Portfolio | Tous droits réservés</p>
-</footer>
+    </footer>
 
 <script>
-  // Sélectionne uniquement le conteneur du carrousel spécifique
-  const techCarousel = document.querySelector('.carousel-container');
-  const techCards = techCarousel.querySelectorAll('.card');
-  const techPrevButton = techCarousel.querySelector('.prev');
-  const techNextButton = techCarousel.querySelector('.next');
+  // Carousel functionality
+  const carousel = document.querySelector('.carousel');
+  const cards = carousel.querySelectorAll('.card');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+  let currentIndex = 0;
 
-  let currentTechIndex = 0;
-
-  function updateTechCarousel() {
-    techCards.forEach((card, index) => {
-      card.classList.toggle('active', index === currentTechIndex);
-    });
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
   }
 
-  techPrevButton.addEventListener('click', () => {
-    currentTechIndex = (currentTechIndex === 0) ? techCards.length - 1 : currentTechIndex - 1;
-    updateTechCarousel();
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? cards.length - 1 : currentIndex - 1;
+    updateCarousel();
   });
 
-  techNextButton.addEventListener('click', () => {
-    currentTechIndex = (currentTechIndex === techCards.length - 1) ? 0 : currentTechIndex + 1;
-    updateTechCarousel();
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === cards.length - 1) ? 0 : currentIndex + 1;
+    updateCarousel();
   });
 
-  // Initialisation
-  updateTechCarousel();
+  // Initialize carousel
+  updateCarousel();
 </script>
-
 
 </body>
 
