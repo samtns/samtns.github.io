@@ -1,93 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page en Travaux</title>
-  <!-- Import Google Fonts et Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* Global Styles */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #D2D2D2;
-      background-color: #1A1A1A;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet 1 - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Variables */
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #845ef7;
+            --accent-color: #ff922b;
+            --dark-bg: #0B1B33;
+            --card-bg: rgba(11, 27, 51, 0.7);
+            --text-color: #e2e8f0;
+            --gradient: linear-gradient(135deg, #ff6b6b, #ff922b);
+            --glass-bg: rgba(11, 27, 51, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://i.postimg.cc/J76x0pqN/wallpapier3.gif') no-repeat center center fixed;
-      background-size: cover;
-      z-index: -2;
-    }
+        /* Reset et base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-      font-size: 3rem;
-      color: #9aa100;
-      margin: 0;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            background: url('https://i.postimg.cc/9fVBTmvD/background.gif') center/cover no-repeat fixed;
+        }
 
-    p {
-      font-size: 1.5rem;
-      margin: 20px 0;
-    }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 27, 51, 0.2);
+            z-index: -1;
+        }
 
-    .icon {
-      font-size: 5rem;
-      color: #FFD700;
-      margin: 20px 0;
-      animation: bounce 1.5s infinite;
-    }
+        /* Header */
+        header {
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    a {
-      color: #9aa100;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #ff6b6b, #ff922b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+        }
 
-    a:hover {
-      color: #FFD700;
-      transform: scale(1.1);
-    }
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
 
-    /* Bounce Animation */
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-20px);
-      }
-      60% {
-        transform: translateY(-10px);
-      }
-    }
-  </style>
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .project-content {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 60px;
+        }
+
+        .project-content h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .project-content p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid var(--glass-border);
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        /* Links */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div>
-    <i class="fas fa-tools icon"></i>
-    <h1>Page en Travaux</h1>
-    <p>Cette page est actuellement en cours de développement.</p>
-    <a href="index.html">Retour à l'accueil</a>
-  </div>
-</body>
+    <header>
+        <h1 data-aos="fade-down">Projet 1</h1>
+    </header>
 
+    <main>
+        <section class="project-content" data-aos="fade-up">
+            <h2>Description du Projet</h2>
+            <p>Ce projet est une application web développée pour [description du projet]. Il utilise les technologies suivantes :</p>
+            <ul>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+            </ul>
+            
+            <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Capture d'écran du projet" class="project-image">
+            
+            <h2>Fonctionnalités</h2>
+            <p>[Description des fonctionnalités principales]</p>
+            
+            <h2>Technologies Utilisées</h2>
+            <p>[Liste des technologies et outils utilisés]</p>
+            
+            <h2>Liens</h2>
+            <p>
+                <a href="#" target="_blank">Voir le projet en ligne</a><br>
+                <a href="#" target="_blank">Code source sur GitHub</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mon Portfolio | Tous droits réservés</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        });
+    </script>
+</body>
 </html>

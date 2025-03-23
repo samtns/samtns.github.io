@@ -4,19 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Présentation du Projet</title>
-  <!-- Import Google Fonts et Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Projet Java - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
-    /* Global Styles */
-    body {
-      font-family: 'Poppins', sans-serif;
+    /* Variables */
+    :root {
+      --primary-color: #ff6b6b;
+      --secondary-color: #845ef7;
+      --accent-color: #ff922b;
+      --dark-bg: #0B1B33;
+      --card-bg: rgba(11, 27, 51, 0.7);
+      --text-color: #e2e8f0;
+      --gradient: linear-gradient(135deg, #ff6b6b, #ff922b);
+      --glass-bg: rgba(11, 27, 51, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Reset et base */
+    * {
       margin: 0;
       padding: 0;
-      color: #D2D2D2;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-color);
       line-height: 1.6;
-      background-color: #1A1A1A;
+      background-color: var(--dark-bg);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      background: url('https://i.postimg.cc/9fVBTmvD/background.gif') center/cover no-repeat fixed;
     }
 
     body::before {
@@ -26,36 +47,116 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://i.postimg.cc/J76x0pqN/wallpapier3.gif') no-repeat center center fixed;
-      background-size: cover;
-      z-index: -2;
+      background: rgba(11, 27, 51, 0.2);
+      z-index: -1;
     }
 
-    h1, h2, h3 {
-      font-weight: 600;
-    }
-
-    a {
-      color: #9aa100;
-      text-decoration: none;
-      font-weight: bold;
+    /* Header */
+    header {
+      text-align: center;
+      padding: 120px 20px;
       position: relative;
-      transition: color 0.3s ease, transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin: 0;
+      background: linear-gradient(135deg, #ff6b6b, #ff922b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    .project-content {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      margin-bottom: 60px;
+    }
+
+    .project-content h2 {
+      color: var(--text-color);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .project-content p {
+      margin-bottom: 20px;
+      color: var(--text-color);
+      opacity: 0.9;
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid var(--glass-border);
+      padding: 30px;
+      margin-top: 60px;
+    }
+
+    /* Links */
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     a:hover {
-      color: #FFD700;
-      transform: scale(1.1);
+      color: var(--accent-color);
     }
 
     a::after {
       content: '';
       position: absolute;
-      left: 0;
       bottom: -2px;
+      left: 0;
       width: 0;
       height: 2px;
-      background-color: #FFD700;
+      background: var(--gradient);
       transition: width 0.3s ease;
     }
 
@@ -63,115 +164,67 @@
       width: 100%;
     }
 
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
 
-    /* Header */
-    header {
-      text-align: center;
-      padding: 60px 20px;
-      background: rgba(0, 0, 0, 0.2);
-      color: #9aa100;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-    }
-
-    header p {
-      font-size: 1rem;
-      margin-top: 10px;
-    }
-
-    /* Main Section */
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 1.8rem;
-      color: #9aa100;
-      margin-bottom: 40px;
-    }
-
-    section {
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      margin-bottom: 40px;
-      color: #D2D2D2;
-    }
-
-    section h2 {
-      color: #9aa100;
-      margin-bottom: 10px;
-    }
-
-    /* Footer */
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: #D2D2D2;
-      text-align: center;
-      padding: 20px;
-      font-size: 1em;
+      .section-title {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 
 <body>
-
   <header>
-    <h1>Présentation du Projet</h1>
-    <p>Découvrez les améliorations et développements de l'application Java</p>
+    <h1 data-aos="fade-down">Projet Java</h1>
   </header>
 
   <main>
-    <section>
-      <h2 class="section-title">Introduction</h2>
+    <section class="project-content" data-aos="fade-up">
+      <h2>Introduction</h2>
       <p>Ce projet vise à améliorer une application Java pour la gestion d'une ligue et de ses employés. Les améliorations incluent la création d'une base de données, un arbre heuristique, et des modifications dans la gestion des employés.</p>
-    </section>
 
-    <section>
-      <h2 class="section-title">Partie 1 - Base de Données</h2>
+      <h2>Base de Données</h2>
       <p>Nous avons conçu un modèle conceptuel des données (MCD) :</p>
-      <img src="https://i.ibb.co/StmgVPC/MCD.png" alt="MCD">
-      <p>Les scripts SQL associés :</p>
-      <ul>
-        <li><a href="https://github.com/samtns/personnel/blob/master/script.sql" target="_blank">Création des tables</a></li>
-        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/Alter_Table.sql" target="_blank">Modification des tables</a></li>
-      </ul>
-    </section>
+      <img src="https://i.ibb.co/StmgVPC/MCD.png" alt="MCD" class="project-image">
+      
+      <h2>Scripts SQL</h2>
+      <p>
+        <a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/create_table.sql" target="_blank">Création des tables</a><br>
+        <a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/Alter_Table.sql" target="_blank">Modification des tables</a>
+      </p>
 
-    <section>
-      <h2 class="section-title">Partie 2 - Arbre Heuristique</h2>
+      <h2>Arbre Heuristique</h2>
       <p>L'arbre heuristique récapitule les fonctionnalités de l'application :</p>
-      <img src="https://i.ibb.co/vJRF0rF/heuristique.png" alt="Arbre Heuristique">
-    </section>
+      <img src="https://i.ibb.co/vJRF0rF/heuristique.png" alt="Arbre Heuristique" class="project-image">
 
-    <section>
-      <h2 class="section-title">Partie 3 - Développement Java</h2>
+      <h2>Développement Java</h2>
       <p>Améliorations principales :</p>
       <ul>
-        <li><a href="https://github.com/samtns/personnel/blob/master/Personnel/src/personnel/Employe.java" target="_blank">Ajout d'un sous-menu pour les employés</a></li>
-        <li><a href="https://github.com/samtns/personnel/blob/master/Personnel/src/testsUnitaires/testLigue.java" target="_blank">Meilleure gestion des erreurs de date</a></li>
+        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/personnel-master/Personnel/src/personnel/Employe.java" target="_blank">Ajout d'un sous-menu pour les employés</a></li>
+        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/personnel-master/Personnel/src/testsUnitaires/testLigue.java" target="_blank">Meilleure gestion des erreurs de date</a></li>
       </ul>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2024 Projet Java | Tous droits réservés</p>
+    <p>&copy; 2024 Mon Portfolio | Tous droits réservés</p>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    });
+  </script>
 </body>
 
 </html>
-
 
 
