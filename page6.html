@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interactif</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0b132b, #1c2541);
+            color: #e7e7e7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://i.postimg.cc/9fVBTmvD/background.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 27, 51, 0.7);
+            z-index: -1;
+        }
+
+        .quiz-container {
+            background: rgba(28, 37, 65, 0.8);
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #ff922b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 146, 43, 0.5);
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(58, 80, 107, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .option:hover {
+            transform: translateY(-3px);
+            background: rgba(58, 80, 107, 0.8);
+            border-color: #ff922b;
+        }
+
+        .option.correct {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            border-color: #4CAF50;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(135deg, #d00000, #b30000);
+            border-color: #d00000;
+        }
+
+        .score-container {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #ff922b;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff922b, #f0a500);
+            transition: width 0.3s ease;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, #ff922b, #f0a500);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: none;
+            margin: 20px auto;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-container {
+            text-align: center;
+            display: none;
+        }
+
+        .result-container h2 {
+            color: #ff922b;
+            margin-bottom: 20px;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-selector {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .theme-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .theme-btn {
+            background: rgba(58, 80, 107, 0.5);
+            color: white;
+            border: 2px solid transparent;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .theme-btn:hover {
+            transform: translateY(-3px);
+            background: rgba(58, 80, 107, 0.8);
+            border-color: #ff922b;
+        }
+
+        .theme-btn.active {
+            background: linear-gradient(135deg, #ff922b, #f0a500);
+            border-color: #ff922b;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .question {
+                font-size: 1.2rem;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz BTS SIO</h1>
+        <div class="theme-selector">
+            <h2>Choisissez un thème</h2>
+            <div class="theme-buttons">
+                <button class="theme-btn" data-theme="programming">Programmation</button>
+                <button class="theme-btn" data-theme="network">Réseaux</button>
+                <button class="theme-btn" data-theme="database">Base de données</button>
+            </div>
+        </div>
+        <div class="score-container">Score: <span id="score">0</span>/<span id="total">0</span></div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="question-container">
+            <div class="question" id="question"></div>
+            <div class="options" id="options"></div>
+        </div>
+        <button class="next-btn" id="nextBtn">Question suivante</button>
+        <div class="result-container" id="resultContainer">
+            <h2>Quiz terminé !</h2>
+            <p>Votre score final : <span id="finalScore">0</span>/<span id="finalTotal">0</span></p>
+            <button class="restart-btn" id="restartBtn">Recommencer</button>
+        </div>
+    </div>
+
+    <script>
+        const questionsByTheme = {
+            programming: [
+                {
+                    question: "Quelle est la différence entre une variable et une constante ?",
+                    options: ["Une constante ne peut pas être modifiée", "Une variable est plus rapide", "Une constante prend plus de mémoire", "Il n'y a pas de différence"],
+                    correct: 0
+                },
+                {
+                    question: "Qu'est-ce qu'une boucle 'for' ?",
+                    options: ["Une structure conditionnelle", "Une structure de répétition", "Une fonction", "Une variable"],
+                    correct: 1
+                },
+                {
+                    question: "Quel est le rôle d'une fonction ?",
+                    options: ["Afficher du texte", "Répéter du code", "Regrouper du code réutilisable", "Créer des variables"],
+                    correct: 2
+                },
+                {
+                    question: "Qu'est-ce qu'un algorithme ?",
+                    options: ["Un langage de programmation", "Une suite d'instructions", "Une variable", "Une fonction"],
+                    correct: 1
+                },
+                {
+                    question: "Quelle est la différence entre '==' et '===' en JavaScript ?",
+                    options: ["Il n'y a pas de différence", "'===' compare aussi le type", "'==' est plus rapide", "'===' est plus lent"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'une classe en programmation orientée objet ?",
+                    options: ["Une variable", "Un template pour créer des objets", "Une fonction", "Une boucle"],
+                    correct: 1
+                },
+                {
+                    question: "Quel est le rôle d'un constructeur ?",
+                    options: ["Détruire des objets", "Initialiser un objet", "Modifier des variables", "Créer des fonctions"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'une API ?",
+                    options: ["Un langage de programmation", "Une interface de programmation", "Une base de données", "Un système d'exploitation"],
+                    correct: 1
+                },
+                {
+                    question: "Quelle est la différence entre GET et POST ?",
+                    options: ["Il n'y a pas de différence", "GET est plus rapide", "POST est plus sécurisé", "GET affiche, POST envoie"],
+                    correct: 3
+                },
+                {
+                    question: "Qu'est-ce qu'un framework ?",
+                    options: ["Un langage de programmation", "Un environnement de développement", "Une structure de code prédéfinie", "Une base de données"],
+                    correct: 2
+                }
+            ],
+            network: [
+                {
+                    question: "Qu'est-ce qu'une adresse IP ?",
+                    options: ["Un nom de domaine", "Une adresse physique", "Une adresse unique sur un réseau", "Un protocole"],
+                    correct: 2
+                },
+                {
+                    question: "Quel est le rôle d'un routeur ?",
+                    options: ["Créer des sites web", "Acheminer des données", "Stocker des fichiers", "Programmer"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce que le protocole HTTP ?",
+                    options: ["Un langage de programmation", "Un système d'exploitation", "Un protocole de communication", "Une base de données"],
+                    correct: 2
+                },
+                {
+                    question: "Quelle est la différence entre LAN et WAN ?",
+                    options: ["Il n'y a pas de différence", "LAN est plus rapide", "WAN est plus rapide", "LAN est local, WAN est étendu"],
+                    correct: 3
+                },
+                {
+                    question: "Qu'est-ce qu'un pare-feu ?",
+                    options: ["Un virus", "Un système de sécurité", "Un protocole", "Une base de données"],
+                    correct: 1
+                },
+                {
+                    question: "Quel est le rôle du DNS ?",
+                    options: ["Créer des sites web", "Convertir des noms en adresses IP", "Protéger le réseau", "Stocker des données"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce que le protocole HTTPS ?",
+                    options: ["Une version plus rapide de HTTP", "Une version sécurisée de HTTP", "Un autre protocole", "Une base de données"],
+                    correct: 1
+                },
+                {
+                    question: "Quelle est la différence entre TCP et UDP ?",
+                    options: ["Il n'y a pas de différence", "TCP est plus rapide", "UDP est plus fiable", "TCP est fiable, UDP est rapide"],
+                    correct: 3
+                },
+                {
+                    question: "Qu'est-ce qu'un VPN ?",
+                    options: ["Un virus", "Un réseau privé virtuel", "Un protocole", "Une base de données"],
+                    correct: 1
+                },
+                {
+                    question: "Quel est le rôle d'un switch réseau ?",
+                    options: ["Créer des sites web", "Connecter des appareils", "Protéger le réseau", "Stocker des données"],
+                    correct: 1
+                }
+            ],
+            database: [
+                {
+                    question: "Qu'est-ce qu'une clé primaire ?",
+                    options: ["Une clé de sécurité", "Un identifiant unique", "Une clé de chiffrement", "Une clé de connexion"],
+                    correct: 1
+                },
+                {
+                    question: "Quelle est la différence entre SQL et NoSQL ?",
+                    options: ["Il n'y a pas de différence", "SQL est plus rapide", "NoSQL est plus rapide", "SQL est structuré, NoSQL est flexible"],
+                    correct: 3
+                },
+                {
+                    question: "Qu'est-ce qu'une jointure SQL ?",
+                    options: ["Une connexion", "Une table", "Une requête", "Une base de données"],
+                    correct: 0
+                },
+                {
+                    question: "Quel est le rôle d'un index ?",
+                    options: ["Sécuriser les données", "Accélérer les recherches", "Stocker les données", "Créer des tables"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'une transaction ?",
+                    options: ["Une table", "Une requête", "Une opération atomique", "Une base de données"],
+                    correct: 2
+                },
+                {
+                    question: "Qu'est-ce qu'une clé étrangère ?",
+                    options: ["Une clé de sécurité", "Une référence à une clé primaire", "Une clé de chiffrement", "Une clé de connexion"],
+                    correct: 1
+                },
+                {
+                    question: "Quel est le rôle d'une vue SQL ?",
+                    options: ["Stocker des données", "Afficher des données", "Protéger les données", "Créer des tables"],
+                    correct: 1
+                },
+                {
+                    question: "Qu'est-ce qu'une normalisation ?",
+                    options: ["Une erreur", "Une organisation des données", "Une suppression", "Une création"],
+                    correct: 1
+                },
+                {
+                    question: "Quelle est la différence entre DELETE et TRUNCATE ?",
+                    options: ["Il n'y a pas de différence", "DELETE est plus rapide", "TRUNCATE est plus rapide", "DELETE peut être annulé, TRUNCATE non"],
+                    correct: 3
+                },
+                {
+                    question: "Qu'est-ce qu'un trigger ?",
+                    options: ["Une erreur", "Une action automatique", "Une table", "Une requête"],
+                    correct: 1
+                }
+            ]
+        };
+
+        const comments = {
+            excellent: [
+                "Impressionnant ! Vous êtes un véritable expert !",
+                "Bravo ! Vous maîtrisez parfaitement ce sujet !",
+                "Excellent ! Vous devriez enseigner ce sujet !"
+            ],
+            good: [
+                "Pas mal ! Vous connaissez bien votre sujet !",
+                "Bien joué ! Quelques révisions et vous serez parfait !",
+                "Bon travail ! Vous êtes sur la bonne voie !"
+            ],
+            average: [
+                "Moyen... Mais qui a besoin de tout savoir ?",
+                "Pas terrible, mais ce n'est pas la fin du monde !",
+                "Il y a de la marge d'amélioration, mais c'est déjà ça !"
+            ],
+            poor: [
+                "Oups ! Il faudrait peut-être réviser un peu...",
+                "C'est pas grave, on ne peut pas tout savoir !",
+                "Et dire que certains pensent que c'est facile..."
+            ]
+        };
+
+        function getRandomComment(score, total) {
+            const percentage = (score / total) * 100;
+            let category;
+            
+            if (percentage >= 90) category = 'excellent';
+            else if (percentage >= 70) category = 'good';
+            else if (percentage >= 50) category = 'average';
+            else category = 'poor';
+            
+            const commentList = comments[category];
+            return commentList[Math.floor(Math.random() * commentList.length)];
+        }
+
+        let currentTheme = null;
+        let questions = [];
+        let currentQuestion = 0;
+        let score = 0;
+        let canAnswer = true;
+
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreEl = document.getElementById('score');
+        const totalEl = document.getElementById('total');
+        const progressEl = document.getElementById('progress');
+        const resultContainer = document.getElementById('resultContainer');
+        const finalScoreEl = document.getElementById('finalScore');
+        const finalTotalEl = document.getElementById('finalTotal');
+        const restartBtn = document.getElementById('restartBtn');
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const questionContainer = document.querySelector('.question-container');
+        const themeSelector = document.querySelector('.theme-selector');
+
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentTheme = button.dataset.theme;
+                questions = questionsByTheme[currentTheme];
+                
+                // Mettre à jour l'apparence des boutons
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Cacher le sélecteur de thème et afficher la première question
+                themeSelector.style.display = 'none';
+                questionContainer.style.display = 'block';
+                
+                // Réinitialiser le quiz
+                currentQuestion = 0;
+                score = 0;
+                scoreEl.textContent = '0';
+                totalEl.textContent = questions.length;
+                showQuestion();
+            });
+        });
+
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            questionEl.textContent = question.question;
+            optionsEl.innerHTML = '';
+            canAnswer = true;
+
+            question.options.forEach((option, index) => {
+                const button = document.createElement('div');
+                button.className = 'option';
+                button.textContent = option;
+                button.addEventListener('click', () => selectOption(index));
+                optionsEl.appendChild(button);
+            });
+
+            updateProgress();
+            nextBtn.style.display = 'none';
+        }
+
+        function selectOption(index) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const options = optionsEl.children;
+            const correct = questions[currentQuestion].correct;
+
+            for (let option of options) {
+                option.style.pointerEvents = 'none';
+            }
+
+            if (index === correct) {
+                options[index].classList.add('correct');
+                score++;
+                scoreEl.textContent = score;
+            } else {
+                options[index].classList.add('incorrect');
+                options[correct].classList.add('correct');
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressEl.style.width = `${progress}%`;
+        }
+
+        function showResult() {
+            questionContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            finalScoreEl.textContent = score;
+            finalTotalEl.textContent = questions.length;
+            
+            const comment = getRandomComment(score, questions.length);
+            const commentEl = document.createElement('p');
+            commentEl.className = 'comment';
+            commentEl.textContent = comment;
+            resultContainer.insertBefore(commentEl, restartBtn);
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        });
+
+        restartBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            score = 0;
+            scoreEl.textContent = '0';
+            questionContainer.style.display = 'block';
+            resultContainer.style.display = 'none';
+            themeSelector.style.display = 'block';
+            
+            // Supprimer le commentaire précédent
+            const commentEl = resultContainer.querySelector('.comment');
+            if (commentEl) {
+                commentEl.remove();
+            }
+            
+            showQuestion();
+        });
+
+        // Initialisation
+        questionContainer.style.display = 'none';
+    </script>
+</body>
+</html>
