@@ -118,10 +118,48 @@
       opacity: 0.9;
     }
 
+    .project-content ul {
+      list-style: none;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    .project-content ul li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .project-content ul li::before {
+      content: '•';
+      color: var(--accent-color);
+      position: absolute;
+      left: -20px;
+    }
+
     .project-image {
       width: 100%;
       max-width: 800px;
       margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .project-image:hover {
+      transform: scale(1.02);
+    }
+
+    .project-image-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .project-image-container img {
+      max-width: 100%;
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
@@ -143,6 +181,36 @@
       font-weight: 500;
       transition: all 0.3s ease;
       position: relative;
+    }
+
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--glass-bg);
+      padding: 12px 24px;
+      border-radius: 50px;
+      border: 1px solid var(--glass-border);
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin: 20px 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .home-button:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .home-button i {
+      font-size: 1.2rem;
+    }
+
+    .home-button-container {
+      text-align: center;
+      margin-top: 40px;
     }
 
     a:hover {
@@ -189,27 +257,21 @@
 
       <h2>Base de Données</h2>
       <p>Nous avons conçu un modèle conceptuel des données (MCD) :</p>
-<<<<<<< HEAD
-      <img src="https://i.ibb.co/StmgVPC/MCD.png" alt="MCD" class="project-image">
+      <div class="project-image-container">
+        <img src="https://i.ibb.co/StmgVPC/MCD.png" alt="MCD" class="project-image">
+      </div>
       
       <h2>Scripts SQL</h2>
       <p>
         <a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/create_table.sql" target="_blank">Création des tables</a><br>
         <a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/Alter_Table.sql" target="_blank">Modification des tables</a>
       </p>
-=======
-      <img src="https://i.ibb.co/StmgVPC/MCD.png" alt="MCD">
-      <p>Les scripts SQL associés :</p>
-      <ul>
-        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/create_table.sql" target="_blank">Création des tables</a></li>
-        <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/SQL/Alter_Table.sql" target="_blank">Modification des tables</a></li>
-      </ul>
-    </section>
->>>>>>> 9235afdc008eb4500ae99e02afe5cbee0b796f6c
 
       <h2>Arbre Heuristique</h2>
       <p>L'arbre heuristique récapitule les fonctionnalités de l'application :</p>
-      <img src="https://i.ibb.co/vJRF0rF/heuristique.png" alt="Arbre Heuristique" class="project-image">
+      <div class="project-image-container">
+        <img src="https://i.ibb.co/vJRF0rF/heuristique.png" alt="Arbre Heuristique" class="project-image">
+      </div>
 
       <h2>Développement Java</h2>
       <p>Améliorations principales :</p>
@@ -218,6 +280,12 @@
         <li><a href="https://github.com/rabbyt3s/AP-Parking/blob/main/personnel-master/Personnel/src/testsUnitaires/testLigue.java" target="_blank">Meilleure gestion des erreurs de date</a></li>
       </ul>
     </section>
+    <div class="home-button-container" data-aos="fade-up">
+      <a href="index.html" class="home-button">
+        <i class="fas fa-home"></i>
+        Retour à l'accueil
+      </a>
+    </div>
   </main>
 
   <footer>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet 1 - Portfolio</title>
+    <title>MyCarDeals - Documentation</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -163,6 +163,95 @@
             width: 100%;
         }
 
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .feature h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            margin: 20px 0;
+            color: var(--text-color);
+        }
+
+        /* Bouton Retour à l'accueil */
+        .home-button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass-bg);
+            color: var(--text-color);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-button:hover {
+            background: var(--card-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-button i {
+            font-size: 1.2em;
+        }
+
+        /* Icons in lists */
+        .project-content ul li i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             header h1 {
@@ -172,42 +261,275 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 data-aos="fade-down">Projet 1</h1>
+        <h1 data-aos="fade-down">MyCarDeals</h1>
     </header>
 
     <main>
         <section class="project-content" data-aos="fade-up">
             <h2>Description du Projet</h2>
-            <p>Ce projet est une application web développée pour [description du projet]. Il utilise les technologies suivantes :</p>
+            <p>MyCarDeals est une application web de vente de véhicules comprenant un site public pour les acheteurs et une interface d'administration pour gérer les véhicules, leurs caractéristiques et leurs équipements.</p>
+            
+            <h2>Architecture du Projet</h2>
+            <p>Le projet est structuré en trois parties principales :</p>
             <ul>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>JavaScript</li>
+                <li><strong>Frontend :</strong> Interface utilisateur publique et administration</li>
+                <li><strong>Backend :</strong> API Express.js</li>
+                <li><strong>Base de données :</strong> Firebase (Firestore)</li>
             </ul>
             
-            <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Capture d'écran du projet" class="project-image">
-            
-            <h2>Fonctionnalités</h2>
-            <p>[Description des fonctionnalités principales]</p>
-            
             <h2>Technologies Utilisées</h2>
-            <p>[Liste des technologies et outils utilisés]</p>
+            <ul>
+                <li><i class="fab fa-node-js"></i> Node.js avec Express</li>
+                <li><i class="fab fa-js"></i> JavaScript</li>
+                <li><i class="fab fa-html5"></i> HTML5</li>
+                <li><i class="fab fa-css3-alt"></i> CSS3</li>
+                <li><i class="fab fa-firebase"></i> Firebase</li>
+                <li><i class="fas fa-database"></i> Firestore</li>
+            </ul>
             
-            <h2>Liens</h2>
+            <h2>Fonctionnalités Principales</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Site Public</h3>
+                    <ul>
+                        <li>Page d'accueil avec véhicules en vedette</li>
+                        <li>Liste des véhicules avec filtres</li>
+                        <li>Pages de détails des véhicules</li>
+                        <li>Système de recherche</li>
+                    </ul>
+                </div>
+                <div class="feature">
+                    <h3>Interface d'Administration</h3>
+                    <ul>
+                        <li>Tableau de bord avec statistiques</li>
+                        <li>Gestion des véhicules (CRUD)</li>
+                        <li>Authentification sécurisée</li>
+                        <li>Gestion des équipements</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Structure des Données</h2>
+            <p>La base de données utilise trois collections principales :</p>
+            <ul>
+                <li><strong>vehicles :</strong> Données normalisées des véhicules</li>
+                <li><strong>cars :</strong> Format historique des véhicules</li>
+                <li><strong>admins :</strong> Gestion des administrateurs</li>
+            </ul>
+
+            <h2>Documents du Projet</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Documentation Technique</h3>
+                    <ul>
+                        <li><i class="fas fa-file-code"></i> <strong>documentation_mycardeals.txt</strong> : Documentation complète du projet</li>
+                        <li><i class="fas fa-cogs"></i> <strong>firebase.json</strong> : Configuration Firebase</li>
+                        <li><i class="fas fa-shield-alt"></i> <strong>firestore.rules</strong> : Règles de sécurité Firestore</li>
+                        <li><i class="fas fa-database"></i> <strong>firestore.indexes.json</strong> : Indexes de la base de données</li>
+                    </ul>
+                </div>
+                <div class="feature">
+                    <h3>Configuration</h3>
+                    <ul>
+                        <li><i class="fas fa-box"></i> <strong>package.json</strong> : Dépendances et scripts npm</li>
+                        <li><i class="fas fa-lock"></i> <strong>package-lock.json</strong> : Verrouillage des versions</li>
+                        <li><i class="fas fa-project-diagram"></i> <strong>.firebaserc</strong> : Configuration du projet Firebase</li>
+                        <li><i class="fas fa-file-alt"></i> <strong>.gitignore</strong> : Fichiers ignorés par Git</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>Structure des Dossiers</h2>
+            <pre class="code-block">
+mycardeals/
+├── backend/                 # Serveur et API
+│   ├── config/             # Configuration Firebase
+│   ├── middleware/         # Middleware d'authentification
+│   ├── routes/            # Routes API
+│   └── server.js          # Point d'entrée du serveur
+├── frontend/              # Interface utilisateur
+│   ├── admin/            # Interface d'administration
+│   │   ├── css/         # Styles spécifiques à l'admin
+│   │   ├── js/          # Scripts spécifiques à l'admin
+│   │   ├── cars.html    # Page de gestion des véhicules
+│   │   ├── dashboard.html # Tableau de bord admin
+│   │   └── index.html   # Page de connexion admin
+│   ├── css/             # Styles généraux
+│   ├── img/             # Images statiques
+│   ├── js/              # Scripts du frontend public
+│   ├── car-details.html # Page de détail de véhicule
+│   ├── index.html       # Page d'accueil
+│   └── listings.html    # Page de liste des véhicules
+├── scripts/             # Scripts utilitaires
+│   └── createAdmin.js   # Script pour créer un admin
+└── firebase.json        # Configuration Firebase
+            </pre>
+
+            <h2>Configuration Firebase</h2>
+            <p>Le projet utilise plusieurs fichiers de configuration Firebase :</p>
+            <ul>
+                <li><strong>firebase.json</strong> : Configure le déploiement et les services Firebase</li>
+                <li><strong>firestore.rules</strong> : Définit les règles de sécurité pour l'accès aux données</li>
+                <li><strong>firestore.indexes.json</strong> : Configure les index pour optimiser les requêtes</li>
+                <li><strong>.firebaserc</strong> : Spécifie le projet Firebase à utiliser</li>
+            </ul>
+
+            <h2>Scripts Utilitaires</h2>
+            <p>Le dossier <code>scripts/</code> contient des outils d'administration :</p>
+            <ul>
+                <li><strong>createAdmin.js</strong> : Script pour créer un nouvel administrateur</li>
+            </ul>
+
+            <h2>Documentation</h2>
+            <p>La documentation complète est disponible dans <strong>documentation_mycardeals.txt</strong>, qui couvre :</p>
+            <ul>
+                <li>Architecture détaillée du projet</li>
+                <li>Guide d'installation et de configuration</li>
+                <li>Structure de la base de données</li>
+                <li>API et endpoints disponibles</li>
+                <li>Guide de déploiement</li>
+                <li>Bonnes pratiques de développement</li>
+            </ul>
+
+            <h2>Exemples de Code</h2>
+            <div class="code-screenshots">
+                <!-- 1. Configuration du serveur Express -->
+                <div class="code-screenshot">
+                    <h3>Configuration du Serveur Express</h3>
+                    <p>Ce code montre la configuration initiale du serveur Express avec les middlewares essentiels et la connexion à Firebase.</p>
+                    <img src="https://i.ibb.co/9HCfnGSR/Capture-d-cran-243.png" alt="Configuration du serveur Express" class="code-image">
+                    <div class="code-description">
+                        <p>Points clés :</p>
+                        <ul>
+                            <li>Configuration des middlewares de sécurité (helmet, cors)</li>
+                            <li>Initialisation de Firebase Admin</li>
+                            <li>Configuration des routes API</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. Structure de la Base de Données -->
+                <div class="code-screenshot">
+                    <h3>Structure de la Base de Données Firestore</h3>
+                    <p>Exemple de la structure des données pour un véhicule dans Firestore, montrant l'organisation des équipements par catégorie.</p>
+                    <img src="https://i.ibb.co/Y7ktcb7Y/Capture-d-cran-244.png" alt="Structure de la base de données" class="code-image">
+                    <div class="code-description">
+                        <p>Points clés :</p>
+                        <ul>
+                            <li>Organisation hiérarchique des données</li>
+                            <li>Catégorisation des équipements</li>
+                            <li>Types de données utilisés</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. API Routes -->
+                <div class="code-screenshot">
+                    <h3>Routes API pour les Véhicules</h3>
+                    <p>Exemple des routes API pour la gestion des véhicules, incluant la validation des données et la gestion des erreurs.</p>
+                    <img src="https://i.ibb.co/q3TfXsV2/configuration-console-firebase.jpg" alt="Routes API" class="code-image">
+                    <div class="code-description">
+                        <p>Points clés :</p>
+                        <ul>
+                            <li>Validation des requêtes</li>
+                            <li>Gestion des opérations CRUD</li>
+                            <li>Gestion des erreurs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                /* Styles pour les captures d'écran de code */
+                .code-screenshots {
+                    display: grid;
+                    gap: 40px;
+                    margin: 30px 0;
+                }
+
+                .code-screenshot {
+                    background: var(--card-bg);
+                    border-radius: 15px;
+                    padding: 25px;
+                    border: 1px solid var(--glass-border);
+                }
+
+                .code-screenshot h3 {
+                    color: var(--accent-color);
+                    margin-bottom: 15px;
+                    font-size: 1.5rem;
+                }
+
+                .code-image {
+                    width: 100%;
+                    border-radius: 10px;
+                    margin: 15px 0;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                }
+
+                .code-description {
+                    margin-top: 20px;
+                    padding-top: 20px;
+                    border-top: 1px solid var(--glass-border);
+                }
+
+                .code-description ul {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                .code-description ul li {
+                    margin: 10px 0;
+                    padding-left: 25px;
+                    position: relative;
+                }
+
+                .code-description ul li::before {
+                    content: '•';
+                    position: absolute;
+                    left: 0;
+                    color: var(--primary-color);
+                }
+            </style>
+            
+            <h2>Installation et Démarrage</h2>
+            <pre class="code-block">
+# Installation des dépendances
+npm install
+
+# Configuration Firebase
+# Créer un fichier .env avec les variables d'environnement
+
+# Démarrage de l'application
+npm start
+            </pre>
+            
+            <h2>Liens Utiles</h2>
             <p>
-                <a href="#" target="_blank">Voir le projet en ligne</a><br>
-                <a href="#" target="_blank">Code source sur GitHub</a>
+                <br>
+                <a href="https://github.com/samtns/stage2" target="_blank"><i class="fab fa-github"></i> Code source sur GitHub</a>
             </p>
         </section>
     </main>
 
+    <div class="home-button-container">
+        <a href="index.html" class="home-button">
+            <i class="fas fa-home"></i>
+            Retour à l'accueil
+        </a>
+    </div>
+
     <footer>
-        <p>&copy; 2024 Mon Portfolio | Tous droits réservés</p>
+        <p>&copy; 2024 MyCarDeals | Tous droits réservés</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>

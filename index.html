@@ -197,6 +197,8 @@
       backdrop-filter: blur(15px);
       border: 1px solid var(--glass-border);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .project:hover {
@@ -206,7 +208,7 @@
     }
 
     .project img {
-            width: 100%;
+      width: 100%;
       height: 200px;
       object-fit: cover;
     }
@@ -215,13 +217,39 @@
       padding: 20px;
       font-size: 1.3rem;
       color: var(--text-color);
+      margin: 0;
     }
 
     .project p {
       padding: 0 20px 20px;
       color: var(--text-color);
       opacity: 0.9;
-        }
+      flex-grow: 1;
+      margin: 0;
+    }
+
+    .project-links {
+      padding: 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .project-links .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      font-weight: 500;
+    }
+
+    .project-links .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
 
         /* Footer */
         footer {
@@ -550,31 +578,67 @@
   <section>
     <h2 class="section-title" data-aos="fade-up">Mes Projets</h2>
     <div class="projects">
-      <!-- Projet 1 -->
-      <a href="page1.html" target="_blank" class="project" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 1">
-        <h3>Projet 1</h3>
-      </a>
-
-      <!-- Projet 2 -->
-      <div class="project" data-aos="fade-up" data-aos-delay="300">
-        <a href="page2.html" target="_blank">
-          <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 2">
-          <h3>Projet 2</h3>
-        </a>
-        <p><a href="documentation.pdf" target="_blank">Téléchargez la documentation</a></p>
-            </div>
-            
-      <!-- Projet 3 -->
-      <div class="project" data-aos="fade-up" data-aos-delay="400">
-        <a href="https://samtns.github.io/blackjack-js/" target="_blank">
-          <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Itération 2">
-          <h3>Projet 3</h3>
-          <p>Un jeu de carte, le blackjack, codé en HTML et Java</p>
-        </a>
+        <!-- Projet 1 : Application de Gestion de Parking -->
+        <div class="project" data-aos="fade-up">
+            <img src="Documents/screenshot1.png" alt="Application de Gestion de Parking">
+            <h3>Application de Gestion de Parking</h3>
+            <p>Application Java pour la gestion des parkings, incluant la gestion des places, des tarifs et des statistiques.</p>
+            <div class="project-links">
+                <a href="page3.html" class="btn">Voir le projet</a>
             </div>
         </div>
-    </section>
+
+        <!-- Projet 2 : Site Web MyCarDeals -->
+        <div class="project" data-aos="fade-up" data-aos-delay="100">
+            <img src="Documents/screenshot2.png" alt="Site Web MyCarDeals">
+            <h3>Site Web MyCarDeals</h3>
+            <p>Site web de vente de véhicules avec interface administrateur et catalogue public.</p>
+            <div class="project-links">
+                <a href="page3.html" class="btn">Voir le projet</a>
+            </div>
+        </div>
+
+        <!-- Projet 3 : Blackjack -->
+        <div class="project" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.ibb.co/swprv6x/GitHub.png" alt="Blackjack">
+            <h3>Blackjack</h3>
+            <p>Un jeu de carte, le blackjack, codé en HTML et Java</p>
+            <div class="project-links">
+                <a href="https://samtns.github.io/blackjack-js/" target="_blank" class="btn">Voir le projet</a>
+            </div>
+        </div>
+
+        <!-- Projet 4 : To do list -->
+        <div class="project" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://i.postimg.cc/8kX8X8X8/todo-app.png" alt="To do list">
+            <h3>To do list</h3>
+            <p>Application web permettant de gérer des tâches avec catégorisation, dates d'échéance et suivi de progression.</p>
+            <div class="project-links">
+                <a href="page4.html" class="btn">Voir le projet</a>
+            </div>
+        </div>
+
+        <!-- Projet 5 : Startup -->
+        <div class="project" data-aos="fade-up" data-aos-delay="400">
+            <img src="https://i.postimg.cc/9fVBTmvD/startup.png" alt="Startup">
+            <h3>Startup</h3>
+            <p>Site web vitrine pour une startup avec présentation des services, équipe et formulaire de contact.</p>
+            <div class="project-links">
+                <a href="page5.html" class="btn">Voir le projet</a>
+            </div>
+        </div>
+
+        <!-- Projet 6 : Quiz Intéractif -->
+        <div class="project" data-aos="fade-up" data-aos-delay="500">
+            <img src="https://i.postimg.cc/8kX8X8X8/quiz.png" alt="Quiz Intéractif">
+            <h3>Quiz Intéractif</h3>
+            <p>Application web de quiz avec questions aléatoires, système de score et feedback en temps réel.</p>
+            <div class="project-links">
+                <a href="page6.html" class="btn">Voir le projet</a>
+            </div>
+        </div>
+    </div>
+</section>
 </main>
 
     <footer>
