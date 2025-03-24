@@ -494,6 +494,29 @@
             grid-template-columns: 1fr;
         }
     }
+
+    .download-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--gradient);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      font-weight: 500;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
     </style>
 </head>
 
@@ -522,8 +545,12 @@
     <div class="about" data-aos="fade-up" data-aos-delay="200">
       <div class="about-text">
         <p>Bonjour, je m'appelle Souheyl et j'ai 19 ans. Je suis étudiant en BTS informatique deuxième année (SLAM). Passionné par le monde de l'informatique, je suis résolument déterminé à façonner mon avenir professionnel dans ce domaine en constante évolution. Mon parcours académique, avec un baccalauréat mettant l'accent sur les mathématiques et la physique, témoigne de ma capacité à aborder des problématiques avec une approche analytique et rigoureuse.
-          <a href="Documents/cv.pdf" download="Mon_CV">Télécharger mon CV</a></p>
-        </div>
+          <div class="download-buttons">
+            <a href="Documents/cv.pdf" target="_blank" class="download-btn">Voir mon CV</a>
+            <a href="Documents/Presentation.pdf" target="_blank" class="download-btn">Voir ma présentation</a>
+          </div>
+        </p>
+      </div>
       <div class="about-img">
         <img src="https://i.ibb.co/BGRJngm/moi-modified-1-modified.png" alt="Photo de moi">
             </div>
